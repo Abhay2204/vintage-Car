@@ -3,7 +3,7 @@ import { SYSTEM_INSTRUCTION } from '../constants';
 
 // Initialize the API client.
 // NOTE: We assume process.env.API_KEY is available.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 let chatSession: Chat | null = null;
 

@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import CarCard from './components/CarCard';
 import CarDetails from './components/CarDetails';
 import Cart from './components/Cart';
-import Assistant from './components/Assistant';
+
 import Features from './components/Features';
 import Reviews from './components/Reviews';
 import StoryModal from './components/StoryModal';
@@ -422,7 +422,7 @@ const App: React.FC = () => {
         items={cartItems}
         onRemove={removeFromCart}
       />
-      <Assistant />
+
     </div>
     </SmoothScroll>
   );

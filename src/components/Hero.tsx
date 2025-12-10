@@ -122,8 +122,16 @@ const Hero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Controls - Positioned to minimize conflict */}
-      <div className="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-30 flex gap-4 items-center">
+      {/* Controls - Positioned on the right side */}
+      <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-30 flex gap-4 items-center">
+        <div className="hidden md:flex gap-2 mr-4">
+            {HERO_SLIDES.map((_, idx) => (
+                <div 
+                    key={idx} 
+                    className={`h-1 transition-all duration-500 rounded-full shadow-lg ${current === idx ? 'w-12 bg-amber-500' : 'w-4 bg-white/40'}`}
+                />
+            ))}
+        </div>
         <button 
             onClick={() => setCurrent((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
             className="p-3 border border-white/20 hover:border-amber-500 text-white hover:text-amber-500 transition-colors bg-black/50 backdrop-blur-md rounded-full shadow-lg"
@@ -136,14 +144,6 @@ const Hero: React.FC = () => {
         >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
-        <div className="hidden md:flex gap-2 ml-4">
-            {HERO_SLIDES.map((_, idx) => (
-                <div 
-                    key={idx} 
-                    className={`h-1 transition-all duration-500 rounded-full shadow-lg ${current === idx ? 'w-12 bg-amber-500' : 'w-4 bg-white/40'}`}
-                />
-            ))}
-        </div>
       </div>
     </div>
   );
