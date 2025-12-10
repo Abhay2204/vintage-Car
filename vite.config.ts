@@ -22,11 +22,8 @@ export default defineConfig(({ mode }) => {
           '@': path.resolve(__dirname, '.'),
         }
       },
-      assetsInclude: ['**/*.tsx', '**/*.ts'],
-      esbuild: {
-        loader: 'tsx',
-        include: /src\/.*\.[tj]sx?$/,
-        exclude: []
+      optimizeDeps: {
+        include: ['react', 'react-dom', '@google/genai', 'lucide-react', 'framer-motion']
       }
     };
 });
