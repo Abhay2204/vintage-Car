@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
         outDir: 'dist',
         assetsDir: 'assets',
         rollupOptions: {
+          external: ['react', 'react-dom', '@google/genai', 'lucide-react', 'framer-motion', 'lenis'],
           output: {
             manualChunks: undefined,
             entryFileNames: 'assets/[name]-[hash].js',
