@@ -8,8 +8,27 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        middlewareMode: false,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }
       },
-      plugins: [react()],
+      plugins: [
+        react(),
+        {
+          name: 'configure-response-headers',
+          configureServer: (server) => {
+            server.middlewares.use('/', (req, res, next) => {
+              if (req.url?.endsWith('.tsx') || req.url?.endsWith('.ts')) {
+                res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+              }
+              next();
+            });
+          }
+        }
+      ],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
