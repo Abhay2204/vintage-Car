@@ -8,9 +8,6 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
-        fs: {
-          strict: false
-        }
       },
       plugins: [react()],
       define: {
@@ -22,8 +19,18 @@ export default defineConfig(({ mode }) => {
           '@': path.resolve(__dirname, '.'),
         }
       },
-      optimizeDeps: {
-        include: ['react', 'react-dom', '@google/genai', 'lucide-react', 'framer-motion']
+      build: {
+        target: 'es2015',
+        outDir: 'dist',
+        assetsDir: 'assets',
+        rollupOptions: {
+          output: {
+            manualChunks: undefined,
+            entryFileNames: 'assets/[name]-[hash].js',
+            chunkFileNames: 'assets/[name]-[hash].js',
+            assetFileNames: 'assets/[name]-[hash].[ext]'
+          }
+        }
       }
     };
 });
